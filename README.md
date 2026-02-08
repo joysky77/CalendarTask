@@ -1,59 +1,46 @@
-# Fossify Calendar
-<img alt="Logo" src="graphics/icon.webp" width="120" />
+# CalendarTask
+# CalendarTask 项目介绍 / Project Introduction
 
-<a href='https://play.google.com/store/apps/details?id=org.fossify.calendar'><img alt='Get it on Google Play' src='https://play.google.com/intl/en_us/badges/static/images/badges/en_badge_web_generic.png' height=80/></a> <a href="https://f-droid.org/packages/org.fossify.calendar/"><img src="https://fdroid.gitlab.io/artwork/badge/get-it-on-en.svg" alt="Get it on F-Droid" height=80/></a> <a href="https://apt.izzysoft.de/fdroid/index/apk/org.fossify.calendar"><img src="https://gitlab.com/IzzyOnDroid/repo/-/raw/master/assets/IzzyOnDroid.png" alt="Get it on IzzyOnDroid" height=80/></a>
+## 中文版 (Chinese Version)
 
-Your Private & Powerful Schedule Planner
+**日程任务 (CalendarTask)** 是一款基于开源 Fossify Calendar 项目深度定制与研发的日程管理应用。由 **Antigravity** 独立完成开发与功能增强。
 
-Tired of cluttered calendars and privacy concerns?
+### 核心功能
+*   **任务状态快速切换**：在日历视图中双击任意日程或任务，即可快速切换其完成状态。
+*   **多级日程体系**：创新的层级日程管理系统。通过在描述字段添加 `#tag#` 格式的标签，您可以轻松构建复杂的任务树。
+    *   **灵活层级**：起始处的 `#` 数量决定任务级别（从 L1 到 L4+）。
+    *   **智能关联**：标签内容用于精准匹配上级日程，实现复杂任务的父子关系绑定。
+    *   **示例**：
+        *   `#tag1#`（1级日程）
+        *   `##tag1#`（2级日程，上级为 tag1）
+        *   `##tag1#tag2#`（2级日程，定义上级为 tag1 的同时也作为 tag2 的父级）
+        *   `###tag1#tag2#`（3级日程，上级为 tag2）
 
-Fossify Calendar is here to change that. Your open-source powerhouse for managing life, designed with privacy as its core and packed with powerful features to keep you organized.
+### 联系与支持
+如果您有任何建议或需要帮助，欢迎通过以下方式联系：
+*   **电子邮箱**：joysky777@gmail.com
+*   **微信**：gohorizon
+*   **捐赠支持**：您的支持是我持续改进的动力。 [PayPal 捐赠](https://paypal.me/joysky77)
 
-Here's what makes Fossify Calendar different:
+---
 
-**🚫 AD-FREE AND PRIVATE:**  
-Your events remain yours. No ads, no tracking, no intrusive permissions.
+## English Version
 
-**⏰ FLEXIBLE AND CUSTOMIZABLE:**  
-Craft events precisely with times, durations, reminders, and advanced repetition rules.
+**CalendarTask** is a schedule management application based on the open-source Fossify Calendar project, extensively customized and enhanced by **Antigravity**.
 
-**🔄 SEAMLESS SYNCING:**  
-Sync effortlessly with Google Calendar, Outlook, Nextcloud, Exchange, and more.
+### Core Features
+*   **Quick Status Toggling**: Simply double-click any event or task in the calendar view to toggle its completion status instantly.
+*   **Multi-level Schedules**: An innovative hierarchical scheduling system. By adding `#tag#` style tags in the description field, you can easily build complex task structures.
+    *   **Flexible Levels**: The number of leading `#` characters determines the level of the schedule (e.g., L1-L4+).
+    *   **Smart Linking**: The content within the tags is used to precisely match and link to the parent schedule, enabling complex parent-child relationships.
+    *   **Examples**:
+        *   `#tag1#` (Level 1)
+        *   `##tag1#` (Level 2, parent is tag1)
+        *   `##tag1#tag2#` (Level 2, parent is tag1, and also defines tag2 as a parent for others)
+        *   `###tag1#tag2#` (Level 3, parent is tag2)
 
-**🎨 PERSONALIZE YOUR PLANNER:**  
-Set custom sounds, looping audio streams, vibrations, and themes to match your preferences.
-
-**🌈 VIBRANT WIDGETS:**  
-Brighten your day with beautiful calendar widgets and themes for your home screen.
-
-**📅 EFFORTLESS DAY MANAGEMENT:**  
-Plan your day with ease, whether you're a busy professional or a family organizer.
-
-**🎉 IMPORT CELEBRATIONS:**  
-Never miss a birthday or anniversary! Easily import holidays and special dates.
-
-**🔍 FILTER VIEWS:**  
-Quickly find what you're looking for with event filters.
-
-**📆 MULTIPLE VIEWS:**  
-Switch between daily, weekly, monthly, yearly, and event views effortlessly.
-
-**✨ MATERIAL DESIGN ELEGANCE:**  
-Enjoy an intuitive and user-friendly interface with dynamic themes.
-
-**Plus, Fossify Calendar is open-source!**
-
-Join the vibrant community on GitHub, contribute to the project, and make it uniquely yours.
-
-Download Fossify Calendar now and experience the power of a private and customizable schedule.
-
-➡️ Explore more Fossify apps: https://www.fossify.org<br>
-➡️ Open-Source Code: https://www.github.com/FossifyOrg<br>
-➡️ Join the community on Reddit: https://www.reddit.com/r/Fossify<br>
-➡️ Connect on Telegram: https://t.me/Fossify
-
-<div align="center">
-<img alt="App image" src="fastlane/metadata/android/en-US/images/phoneScreenshots/1_en-US.png" width="30%">
-<img alt="App image" src="fastlane/metadata/android/en-US/images/phoneScreenshots/2_en-US.png" width="30%">
-<img alt="App image" src="fastlane/metadata/android/en-US/images/phoneScreenshots/4_en-US.png" width="30%">
-</div>
+### Contact & Support
+If you have any suggestions or need assistance, feel free to reach out:
+*   **Email**: joysky777@gmail.com
+*   **WeChat**: gohorizon
+*   **Support & Donation**: Your support keeps the development going! [Donate via PayPal](https://paypal.me/joysky77)
