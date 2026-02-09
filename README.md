@@ -3,7 +3,7 @@
 
 ## 中文版 (Chinese Version)
 
-**日程任务 (CalendarTask)** 是一款基于开源 Fossify Calendar 项目深度定制与研发的日程管理应用。由 **Antigravity** 独立完成开发与功能增强。
+**日程任务 (CalendarTask)** 是一款基于开源 [Fossify Calendar](https://github.com/FossifyOrg/Calendar/) 项目深度定制与研发的日程管理应用。由 **Antigravity** AI完成开发与功能增强。
 
 ### 核心功能
 *   **任务状态快速切换**：在日历视图中双击任意日程或任务，即可快速切换其完成状态。
@@ -26,7 +26,7 @@
 
 ## English Version
 
-**CalendarTask** is a schedule management application based on the open-source Fossify Calendar project, extensively customized and enhanced by **Antigravity**.
+**CalendarTask** is a schedule management application based on the open-source  [Fossify Calendar](https://github.com/FossifyOrg/Calendar/) project, extensively customized and enhanced by **Antigravity**.
 
 ### Core Features
 *   **Quick Status Toggling**: Simply double-click any event or task in the calendar view to toggle its completion status instantly.
@@ -44,3 +44,10 @@ If you have any suggestions or need assistance, feel free to reach out:
 *   **Email**: joysky777@gmail.com
 *   **WeChat**: gohorizon
 *   **Support & Donation**: Your support keeps the development going! [Donate via PayPal](https://paypal.me/joysky77)
+
+<div align="center">
+<img alt="App image" src="fastlane/metadata/android/en-US/images/phoneScreenshots/0_cn.jpg" width="30%">
+<img alt="App image" src="fastlane/metadata/android/en-US/images/phoneScreenshots/1_en-US.png" width="30%">
+<img alt="App image" src="fastlane/metadata/android/en-US/images/phoneScreenshots/2_en-US.png" width="30%">
+<img alt="App image" src="fastlane/metadata/android/en-US/images/phoneScreenshots/4_en-US.png" width="30%">
+</div>
