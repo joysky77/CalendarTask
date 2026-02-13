@@ -38,4 +38,10 @@ class MyMonthDayPagerAdapter(fm: FragmentManager, private val mCodes: List<Strin
     }
 
     fun getNewEventDayCode(pos: Int): String? = mFragments[pos].getNewEventDayCode()
+
+    fun isOneItemSelected(pos: Int) = mFragments[pos]?.isOneItemSelected() ?: false
+
+    fun addSubItem(pos: Int) {
+        mFragments[pos]?.addSubItem()
+    }
 }

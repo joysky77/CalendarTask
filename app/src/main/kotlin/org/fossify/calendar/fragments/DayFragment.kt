@@ -165,4 +165,10 @@ class DayFragment : Fragment(), RefreshRecyclerViewListener {
     override fun refreshItems() {
         updateCalendar()
     }
+
+    fun isOneItemSelected() = (binding.dayEvents.adapter as? EventListAdapter)?.isOneSelected() == true
+
+    fun addSubItem() {
+        (binding.dayEvents.adapter as? EventListAdapter)?.addSubItem()
+    }
 }

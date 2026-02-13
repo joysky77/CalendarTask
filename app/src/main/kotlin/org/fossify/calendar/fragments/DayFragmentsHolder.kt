@@ -144,4 +144,10 @@ class DayFragmentsHolder : MyFragmentHolder(), NavigationListener {
             null
         }
     }
+
+    override fun isOneItemSelected() = (viewPager.adapter as? MyDayPagerAdapter)?.isOneItemSelected(viewPager.currentItem) == true
+
+    override fun addSubItem() {
+        (viewPager.adapter as? MyDayPagerAdapter)?.addSubItem(viewPager.currentItem)
+    }
 }

@@ -227,6 +227,7 @@
     <string name="within_the_next_one_year">在接下來的 1 年內</string>
     <string name="today_only">僅今天</string>
     <string name="within_the_next">在接下來的…</string>
+    <string name="toggle_completion">標識完成狀態</string>
     <plurals name="within_the_next_days">
         <item quantity="one">在接下來的 %d 天內</item>
         <item quantity="other">在接下來的 %d 天內</item>
@@ -282,4 +283,5 @@
     <string name="email_label">電子郵箱</string>
     <string name="wechat_label">微信</string>
     <string name="copied_to_clipboard">已複製到剪貼簿</string>
+    <string name="add_sub_item">新增子項</string>
 </resources>

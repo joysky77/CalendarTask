@@ -252,6 +252,7 @@
     <string name="faq_5_text">请检查设备的电池和通知设置，确保没有程序阻止提醒，或者在后台关闭应用。您也可以访问 &lt;a href=https://dontkillmyapp.com&gt;https://dontkillmyapp.com&lt;/a&gt;，有一些有用提示。</string>
     <string name="faq_6_title">如何修改或删除现有日历？</string>
     <string name="faq_6_text">您可以在应用设置 - 管理日历中完成这两项操作。只需点击所需的日历即可更改标签和颜色，或者长按所需日历，然后使用顶部菜单中的回收站进行删除。</string>
+    <string name="toggle_completion">完成</string>
     <string name="accessibility_next_day">转到下一天</string>
     <string name="default_calendar_color">默认日历颜色</string>
     <string name="status_confirmed">已确认</string>
@@ -280,4 +281,5 @@
     <string name="email_label">电子邮箱</string>
     <string name="wechat_label">微信</string>
     <string name="copied_to_clipboard">已复制到剪贴板</string>
+    <string name="add_sub_item">子项</string>
 </resources>

@@ -174,7 +174,7 @@ class MainActivity : SimpleActivity(), RefreshRecyclerViewListener {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
-        appLaunched(org.fossify.calendar.BuildConfig.APPLICATION_ID)
+        // appLaunched(org.fossify.calendar.BuildConfig.APPLICATION_ID)
         setupOptionsMenu()
         refreshMenuItems()
         setupEdgeToEdge(
@@ -200,6 +200,7 @@ class MainActivity : SimpleActivity(), RefreshRecyclerViewListener {
         }
         binding.fabEventLabel.setOnClickListener { openNewEvent() }
         binding.fabTaskLabel.setOnClickListener { openNewTask() }
+        binding.fabSubItemLabel.setOnClickListener { openNewSubItem() }
 
         binding.fabExtendedOverlay.setOnClickListener {
             hideExtendedFab()
@@ -207,6 +208,14 @@ class MainActivity : SimpleActivity(), RefreshRecyclerViewListener {
 
         binding.fabTaskIcon.setOnClickListener {
             openNewTask()
+
+            Handler().postDelayed({
+                hideExtendedFab()
+            }, 300)
+        }
+
+        binding.fabSubItemIcon.setOnClickListener {
+            openNewSubItem()
 
             Handler().postDelayed({
                 hideExtendedFab()
@@ -284,9 +293,13 @@ class MainActivity : SimpleActivity(), RefreshRecyclerViewListener {
                 getProperBackgroundColor().adjustAlpha(0.8f).toDrawable()
             fabEventLabel.setTextColor(getProperTextColor())
             fabTaskLabel.setTextColor(getProperTextColor())
+            fabSubItemLabel.setTextColor(getProperTextColor())
 
             fabTaskIcon.drawable.applyColorFilter(mStoredPrimaryColor.getContrastColor())
             fabTaskIcon.background.applyColorFilter(mStoredPrimaryColor)
+
+            fabSubItemIcon.drawable.applyColorFilter(mStoredPrimaryColor.getContrastColor())
+            fabSubItemIcon.background.applyColorFilter(mStoredPrimaryColor)
 
             searchHolder.background = getProperBackgroundColor().toDrawable()
             checkSwipeRefreshAvailability()
@@ -332,8 +345,8 @@ class MainActivity : SimpleActivity(), RefreshRecyclerViewListener {
                 shouldGoToTodayBeVisible && !binding.mainMenu.isSearchOpen
             findItem(R.id.go_to_date).isVisible = config.storedView != EVENTS_LIST_VIEW
             findItem(R.id.refresh_caldav_calendars).isVisible = config.caldavSync
-            findItem(R.id.more_apps_from_us).isVisible =
-                !resources.getBoolean(org.fossify.commons.R.bool.hide_google_relations)
+//            findItem(R.id.more_apps_from_us).isVisible =
+//                !resources.getBoolean(org.fossify.commons.R.bool.hide_google_relations)
             findItem(R.id.toggle_sub_items).apply {
                 val iconRes = if (config.showSubItems) R.drawable.ic_category_outline_vector else R.drawable.ic_event_status_outline_vector
                 setIcon(iconRes)
@@ -366,7 +379,7 @@ class MainActivity : SimpleActivity(), RefreshRecyclerViewListener {
                 R.id.add_holidays -> addHolidays()
                 R.id.add_birthdays -> tryAddBirthdays()
                 R.id.add_anniversaries -> tryAddAnniversaries()
-                R.id.more_apps_from_us -> launchMoreAppsFromUsIntent()
+    //            R.id.more_apps_from_us -> launchMoreAppsFromUsIntent()
                 R.id.settings -> launchSettings()
                 R.id.about -> launchAbout()
                 R.id.toggle_sub_items -> toggleSubItems()
@@ -1180,8 +1193,17 @@ class MainActivity : SimpleActivity(), RefreshRecyclerViewListener {
 
     private fun showExtendedFab() {
         animateFabIcon(false)
+        val lastFragment = currentFragments.last()
         binding.apply {
-            arrayOf(fabEventLabel, fabExtendedOverlay, fabTaskIcon, fabTaskLabel).forEach {
+            val views = mutableListOf(fabEventLabel, fabExtendedOverlay, fabTaskIcon, fabTaskLabel)
+            if (lastFragment.isOneItemSelected()) {
+                views.add(fabSubItemIcon)
+                views.add(fabSubItemLabel)
+            } else {
+                fabSubItemIcon.beGone()
+                fabSubItemLabel.beGone()
+            }
+            views.forEach {
                 it.fadeIn()
             }
         }
@@ -1190,7 +1212,7 @@ class MainActivity : SimpleActivity(), RefreshRecyclerViewListener {
     private fun hideExtendedFab() {
         animateFabIcon(true)
         binding.apply {
-            arrayOf(fabEventLabel, fabExtendedOverlay, fabTaskIcon, fabTaskLabel).forEach {
+            arrayOf(fabEventLabel, fabExtendedOverlay, fabTaskIcon, fabTaskLabel, fabSubItemIcon, fabSubItemLabel).forEach {
                 it.fadeOut()
             }
         }
@@ -1221,6 +1243,11 @@ class MainActivity : SimpleActivity(), RefreshRecyclerViewListener {
         val allowChangingDay =
             lastFragment !is DayFragmentsHolder && lastFragment !is MonthDayFragmentsHolder
         launchNewTaskIntent(lastFragment.getNewEventDayCode(), allowChangingDay)
+    }
+
+    private fun openNewSubItem() {
+        hideKeyboard()
+        currentFragments.last().addSubItem()
     }
 
     fun openMonthFromYearly(dateTime: DateTime) {

@@ -33,4 +33,8 @@ abstract class MyFragmentHolder : Fragment() {
             DatePickerLightBinding.inflate(layoutInflater).datePicker
         }
     }
+
+    open fun isOneItemSelected(): Boolean = false
+
+    open fun addSubItem() {}
 }

@@ -209,4 +209,10 @@ class MonthDayFragment : Fragment(), MonthlyCalendar, RefreshRecyclerViewListene
             updateVisibleEvents()
         }
     }
+
+    fun isOneItemSelected() = (binding.monthDayEventsList.adapter as? EventListAdapter)?.isOneSelected() == true
+
+    fun addSubItem() {
+        (binding.monthDayEventsList.adapter as? EventListAdapter)?.addSubItem()
+    }
 }

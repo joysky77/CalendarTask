@@ -438,7 +438,7 @@ class TaskActivity : SimpleActivity() {
 
         mTask.apply {
             this.startTS = mTaskDateTime.seconds()
-            this.endTS = mTaskDateTime.seconds()
+            this.endTS = mTaskDateTime.plusMinutes(config.defaultDuration).seconds()
             reminder1Minutes = mReminder1Minutes
             reminder1Type = mReminder1Type
             reminder2Minutes = mReminder2Minutes
@@ -446,7 +446,9 @@ class TaskActivity : SimpleActivity() {
             reminder3Minutes = mReminder3Minutes
             reminder3Type = mReminder3Type
             calendarId = mCalendarId
+            description = intent.getStringExtra("description") ?: ""
         }
+        binding.taskDescription.setText(mTask.description)
     }
 
     private fun saveCurrentTask() {

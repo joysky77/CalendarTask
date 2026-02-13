@@ -150,4 +150,10 @@ class MonthDayFragmentsHolder : MyFragmentHolder(), NavigationListener {
             null
         }
     }
+
+    override fun isOneItemSelected() = (viewPager.adapter as? MyMonthDayPagerAdapter)?.isOneItemSelected(viewPager.currentItem) == true
+
+    override fun addSubItem() {
+        (viewPager.adapter as? MyMonthDayPagerAdapter)?.addSubItem(viewPager.currentItem)
+    }
 }

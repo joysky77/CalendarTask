@@ -37,4 +37,10 @@ class MyDayPagerAdapter(fm: FragmentManager, private val mCodes: List<String>, p
     fun printCurrentView(pos: Int) {
         mFragments[pos].printCurrentView()
     }
+
+    fun isOneItemSelected(pos: Int) = mFragments[pos]?.isOneItemSelected() ?: false
+
+    fun addSubItem(pos: Int) {
+        mFragments[pos]?.addSubItem()
+    }
 }

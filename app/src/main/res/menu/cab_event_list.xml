@@ -2,14 +2,21 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
     <item
-        android:id="@+id/cab_share"
-        android:icon="@drawable/ic_share_vector"
-        android:title="@string/share"
+        android:id="@+id/cab_add_subitem"
+        android:icon="@drawable/ic_add_subitem_vector"
+        android:title="@string/add_sub_item"
         app:showAsAction="always" />
+
     <item
         android:id="@+id/cab_toggle_completion"
         android:icon="@drawable/ic_event_available_vector"
         android:title="@string/toggle_completion"
+        app:showAsAction="always" />
+
+    <item
+        android:id="@+id/cab_share"
+        android:icon="@drawable/ic_share_vector"
+        android:title="@string/share"
         app:showAsAction="always" />
 
     <item

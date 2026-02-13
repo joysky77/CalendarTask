@@ -20,7 +20,7 @@
         app:showAsAction="ifRoom" />
     <item
         android:id="@+id/toggle_sub_items"
-        android:icon="@drawable/ic_category_outline_vector"
+        android:icon="@drawable/ic_hierarchy_vector"
         android:title="@string/hide_sub_items"
         app:showAsAction="always" />
     <item
@@ -63,9 +63,9 @@
         android:icon="@drawable/ic_info_vector"
         android:title="@string/about"
         app:showAsAction="ifRoom" />
-    <item
+<!--    <item
         android:id="@+id/more_apps_from_us"
         android:icon="@drawable/ic_google_play_vector"
         android:title="@string/more_fossify_apps"
-        app:showAsAction="ifRoom" />
+        app:showAsAction="ifRoom" />-->
 </menu>

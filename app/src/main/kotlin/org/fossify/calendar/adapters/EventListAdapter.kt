@@ -6,8 +6,12 @@ import android.view.MotionEvent
 import android.view.View
 import android.view.ViewGroup
 import androidx.constraintlayout.widget.ConstraintLayout
+import android.content.Intent
+import android.os.Bundle
 import org.fossify.calendar.R
+import org.fossify.calendar.activities.EventActivity
 import org.fossify.calendar.activities.SimpleActivity
+import org.fossify.calendar.activities.TaskActivity
 import org.fossify.calendar.databinding.EventListItemBinding
 import org.fossify.calendar.databinding.EventListSectionDayBinding
 import org.fossify.calendar.databinding.EventListSectionMonthBinding
@@ -19,10 +23,7 @@ import org.fossify.calendar.models.ListItem
 import org.fossify.calendar.models.ListSectionDay
 import org.fossify.calendar.models.ListSectionMonth
 import org.fossify.commons.adapters.MyRecyclerViewAdapter
-import org.fossify.commons.extensions.adjustAlpha
-import org.fossify.commons.extensions.applyColorFilter
-import org.fossify.commons.extensions.beVisibleIf
-import org.fossify.commons.extensions.getProperTextColor
+import org.fossify.commons.extensions.*
 import org.fossify.commons.helpers.MEDIUM_ALPHA
 import org.fossify.commons.helpers.ensureBackgroundThread
 import org.fossify.commons.interfaces.RefreshRecyclerViewListener
@@ -56,13 +57,84 @@ class EventListAdapter(
 
     override fun getActionMenuId() = R.menu.cab_event_list
 
-    override fun prepareActionMode(menu: Menu) {}
+    override fun prepareActionMode(menu: Menu) {
+        menu.findItem(R.id.cab_add_subitem)?.isVisible = isOneSelected()
+        try {
+            var currentClass: Class<*>? = MyRecyclerViewAdapter::class.java
+            var actionMode: android.view.ActionMode? = null
+            while (currentClass != null && actionMode == null) {
+                val fields = currentClass.declaredFields
+                for (field in fields) {
+                    if (field.type.name.contains("ActionMode")) {
+                        field.isAccessible = true
+                        actionMode = field.get(this) as? android.view.ActionMode
+                        if (actionMode != null) break
+                    }
+                }
+                currentClass = currentClass.superclass
+            }
+
+            if (isOneSelected()) {
+                actionMode?.title = null
+                actionMode?.subtitle = null
+            }
+        } catch (e: Exception) {
+            // ignore
+        }
+    }
 
     override fun actionItemPressed(id: Int) {
         when (id) {
             R.id.cab_share -> shareEvents()
             R.id.cab_toggle_completion -> toggleCompletion()
             R.id.cab_delete -> askConfirmDelete()
+            R.id.cab_add_subitem -> addSubItem()
+        }
+    }
+
+    fun isOneSelected() = isOneItemSelected()
+
+    fun addSubItem() {
+        val selectedKey = selectedKeys.firstOrNull() ?: return
+        val selectedEvent = listItems.find { (it as? ListEvent)?.hashCode() == selectedKey } as? ListEvent ?: return
+        val eventId = selectedEvent.id
+
+        ensureBackgroundThread {
+            val event = activity.eventsDB.getEventOrTaskWithId(eventId) ?: return@ensureBackgroundThread
+            val (updatedParentDescription, childDescriptionPrefix) = HierarchyHelper.prepareHierarchyForSubItem(event.description)
+
+            val launchNewActivity = {
+                activity.runOnUiThread {
+                    val now = System.currentTimeMillis() / 1000L
+                    val startTS = if (now < selectedEvent.startTS) selectedEvent.startTS else now
+                    val bundle = Bundle()
+                    bundle.putLong(NEW_EVENT_START_TS, startTS)
+                    bundle.putString("description", childDescriptionPrefix)
+
+                    val intent = if (event.isTask()) {
+                        Intent(activity, TaskActivity::class.java)
+                    } else {
+                        Intent(activity, EventActivity::class.java).apply {
+                            action = Intent.ACTION_INSERT
+                            putExtra("beginTime", startTS * 1000L)
+                            putExtra("endTime", (startTS + activity.config.defaultDuration * 60) * 1000L)
+                        }
+                    }
+
+                    intent.putExtras(bundle)
+                    activity.launchActivityIntent(intent)
+                    finishActMode()
+                }
+            }
+
+            if (updatedParentDescription != null) {
+                event.description = updatedParentDescription
+                activity.eventsHelper.updateEvent(event, updateAtCalDAV = true, showToasts = false) {
+                    launchNewActivity()
+                }
+            } else {
+                launchNewActivity()
+            }
         }
     }
 

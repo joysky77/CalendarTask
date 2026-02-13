@@ -127,7 +127,7 @@
                             android:id="@+id/about_email"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="joysky777@gmail.com"
+                            android:text="joysky7777@gmail.com"
                             android:textColor="?android:attr/textColorPrimary"
                             android:textSize="16sp" />
                     </LinearLayout>

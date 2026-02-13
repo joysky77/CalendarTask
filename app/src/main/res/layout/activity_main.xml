@@ -86,6 +86,34 @@
                 app:layout_constraintEnd_toStartOf="@+id/calendar_fab"
                 app:layout_constraintTop_toTopOf="@+id/fab_task_icon" />
 
+            <ImageView
+                android:id="@+id/fab_sub_item_icon"
+                android:layout_width="@dimen/secondary_fab_size"
+                android:layout_height="@dimen/secondary_fab_size"
+                android:layout_marginBottom="@dimen/activity_margin"
+                android:alpha="0"
+                android:background="@drawable/circle_background"
+                android:padding="@dimen/medium_margin"
+                android:src="@drawable/ic_add_subitem_vector"
+                android:visibility="gone"
+                app:layout_constraintBottom_toTopOf="@+id/fab_task_icon"
+                app:layout_constraintEnd_toEndOf="@+id/calendar_fab"
+                app:layout_constraintStart_toStartOf="@+id/calendar_fab" />
+
+            <org.fossify.commons.views.MyTextView
+                android:id="@+id/fab_sub_item_label"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:alpha="0"
+                android:paddingVertical="@dimen/small_margin"
+                android:paddingEnd="@dimen/activity_margin"
+                android:text="@string/add_sub_item"
+                android:textSize="@dimen/big_text_size"
+                android:visibility="gone"
+                app:layout_constraintBottom_toBottomOf="@+id/fab_sub_item_icon"
+                app:layout_constraintEnd_toStartOf="@+id/calendar_fab"
+                app:layout_constraintTop_toTopOf="@+id/fab_sub_item_icon" />
+
             <org.fossify.commons.views.MyFloatingActionButton
                 android:id="@+id/calendar_fab"
                 android:layout_width="wrap_content"

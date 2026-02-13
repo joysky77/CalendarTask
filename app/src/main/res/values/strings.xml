@@ -342,4 +342,5 @@
     <string name="paypal_link">https://paypal.me/joysky77</string>
     <string name="features_label">Feature Introduction</string>
     <string name="features_description">1. Double-click an event or task to toggle its completion status.\n2. Multi-level schedules: Add tags like #tag# in the description.\n    #tag1# (Level 1)\n    ##tag1# (Level 2, parent is tag1)\n    ##tag1#tag2# (Level 2, parent is tag1, also defines tag2 as parent for others)\n    ###tag1#tag2# (Level 3, parent is tag2)\nThe number of leading # determines the level (L1-L4+), and content within # links to the parent tag.</string>
+    <string name="add_sub_item">Add sub-item</string>
 </resources>

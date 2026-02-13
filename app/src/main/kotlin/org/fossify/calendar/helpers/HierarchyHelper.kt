@@ -42,4 +42,62 @@ object HierarchyHelper {
         // Fallback: Suffix matching (Nearest Parent principle)
         return sub.tags.last() == parent.tags.last()
     }
+
+    fun generateId(): String {
+        val chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789"
+        return (1..4)
+            .map { chars.random() }
+            .joinToString("")
+    }
+
+    /**
+     * Prepares the hierarchy strings for creating a sub-item.
+     * returns a Pair:
+     * - first: The updated parent description if it needed "perfecting" (null if no change).
+     * - second: The pre-filled description prefix for the new child item.
+     */
+    fun prepareHierarchyForSubItem(parentDescription: String?): Pair<String?, String> {
+        val description = parentDescription ?: ""
+        val match = Regex("^(#+)(.+)(#+)").find(description)
+        
+        val hierarchy = if (match != null) {
+            val level = match.groupValues[1].length
+            val content = match.groupValues[2]
+            val tags = content.split('#').map { it.trim() }.filter { it.isNotEmpty() }
+            if (tags.isNotEmpty()) HierarchyInfo(level, tags) else null
+        } else null
+
+        val n = hierarchy?.level ?: 1
+        val tags = hierarchy?.tags ?: emptyList()
+        val m = tags.size
+        
+        val remainder = if (match != null) description.substring(match.value.length) else description
+
+        var updatedParentDescription: String? = null
+        val currentTags = tags.toMutableList()
+
+        if (hierarchy == null) {
+            // Case 1: No hierarchy or doesn't match pattern
+            val newId = generateId()
+            currentTags.clear()
+            currentTags.add(newId)
+            updatedParentDescription = ("#$newId# $description").trim()
+        } else if (m < n) {
+            // Case 2: Incomplete hierarchy (e.g., Level 2 but has only 1 tag)
+            val needed = n - m
+            repeat(needed) {
+                currentTags.add(generateId())
+            }
+            updatedParentDescription = ("#".repeat(n) + currentTags.joinToString("#") + "#" + remainder).trim()
+        }
+
+        // Inheritance and generation for the child
+        val childLevel = (hierarchy?.level ?: 1) + 1
+        val childId = generateId()
+        val childTags = currentTags.toMutableList()
+        childTags.add(childId)
+        val childDescriptionPrefix = "#".repeat(childLevel) + childTags.joinToString("#") + "#"
+
+        return updatedParentDescription to childDescriptionPrefix
+    }
 }

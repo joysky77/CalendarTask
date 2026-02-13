@@ -303,4 +303,10 @@ class EventListFragment : MyFragmentHolder(), RefreshRecyclerViewListener {
     }
 
     override fun getCurrentDate() = null
+
+    override fun isOneItemSelected() = (binding.calendarEventsList.adapter as? EventListAdapter)?.isOneSelected() == true
+
+    override fun addSubItem() {
+        (binding.calendarEventsList.adapter as? EventListAdapter)?.addSubItem()
+    }
 }
