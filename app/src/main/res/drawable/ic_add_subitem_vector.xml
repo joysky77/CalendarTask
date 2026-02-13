@@ -1,0 +1,22 @@
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="24dp"
+    android:height="24dp"
+    android:viewportWidth="960"
+    android:viewportHeight="960">
+    <!-- Parent line indicator -->
+    <path
+        android:fillColor="@android:color/white"
+        android:pathData="M160 120h480v80H160V120z" />
+    <!-- L-connection -->
+    <path
+        android:fillColor="@android:color/white"
+        android:pathData="M240 200v440h80v-80h-40V200H240z" />
+    <!-- Plus sign on the indented level -->
+    <path
+        android:fillColor="@android:color/white"
+        android:pathData="M440 560h120v-120h80v120h120v80H640v120h-80V640H440v-80z" />
+    <!-- Indented child line indicator -->
+    <path
+        android:fillColor="@android:color/white"
+        android:pathData="M320 600h80v80h-80V600z" />
+</vector>
