@@ -44,6 +44,13 @@
 
 ---
 
+<div align="center">
+<img alt="App image" src="fastlane/metadata/android/en-US/images/phoneScreenshots/1_en-US.png" width="20%">
+<img alt="App image" src="fastlane/metadata/android/en-US/images/phoneScreenshots/2_en-US.png" width="20%">
+<img alt="App image" src="fastlane/metadata/android/en-US/images/phoneScreenshots/1_cn.jpg" width="20%">
+<img alt="App image" src="fastlane/metadata/android/en-US/images/phoneScreenshots/2_cn.jpg" width="20%">
+</div>
+
 ## 联系与支持 / Contact & Support
 *   **Email**: joysky7777@gmail.com
 *   **WeChat**: gohorizon
